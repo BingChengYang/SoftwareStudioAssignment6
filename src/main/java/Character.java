@@ -22,13 +22,13 @@ public class Character {
 
 	private ArrayList<Character> targets;
 	
-	public Character(MainApplet parent , String name , int value ){
+	public Character(MainApplet parent , String name  ){
 
 		this.parent = parent;
 		this.name = name;
-		this.value = value;
+		//this.value = value;
 		
-		this.targets = new ArrayList<>();
+		//this.targets = new ArrayList<>();
 	}
 
 	public void display(){

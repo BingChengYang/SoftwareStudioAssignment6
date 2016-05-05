@@ -26,10 +26,12 @@ public class MainApplet extends PApplet{
 	private ArrayList<Character> characters5;
 	private ArrayList<Character> characters6;
 	private ArrayList<Character> characters7;
+	public int nowEpisode = 0;
 	
 	private final static int width = 1200, height = 650;
 	
 	public void setup() {
+		System.out.println("aaaaaa");
 		str = new String[7];
 		a1 = new ArrayList<ArrayList>();
 		setCharacterList();
@@ -42,6 +44,13 @@ public class MainApplet extends PApplet{
 
 	public void draw() {
 		
+	}
+	
+	public void keyPressed(){
+		if(nowEpisode == 6)
+			nowEpisode = 0;
+		else
+			nowEpisode ++;
 	}
 	
 	private void setCharacterList(){
@@ -73,14 +82,14 @@ public class MainApplet extends PApplet{
 	
 	private void loadData(){
 		for(int i=0 ; i < 7; i++){
-			System.out.println(str[i]);
 			data = loadJSONObject(path + str[i]);
 			
 			nodes = data.getJSONArray("nodes");
 			links = data.getJSONArray("links");
 			
 			for(int j=0; j< nodes.size(); j++){
-				Character c = new Character(this);
+				Character c = new Character(this, nodes.getJSONObject(i).getString("name"));
+				System.out.println("aaa");
 				if(j==0)
 					this.characters1.add(c);
 				else if(j==1)
