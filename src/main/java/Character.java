@@ -35,4 +35,8 @@ public class Character {
 
 	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
 }
