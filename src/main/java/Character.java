@@ -7,7 +7,7 @@ import processing.core.PApplet;
 * You will need to declare other variables depending on your implementation.
 */
 public class Character {
-	
+	//8787
 	private MainApplet parent;
 
 	public Character(MainApplet parent){
