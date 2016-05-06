@@ -17,26 +17,70 @@ public class Character {
 	private int value;
 	private Color c;
 	
-	private int centerX;
-	private int centerY;
+	private float initX;
+	private float initY;
+	
+	private float centerX;
+	private float centerY;
+	
+	private boolean inNetwork;
 
 	private ArrayList<Character> targets;
 	
-	public Character(MainApplet parent , String name  ){
+	public Character(MainApplet parent , String name , float x,float y ){
 
 		this.parent = parent;
 		this.name = name;
-		//this.value = value;
+		this.value = value;
 		
-		//this.targets = new ArrayList<>();
+		this.initX = x;
+		this.initY = y;
+		
+		this.centerX = this.initX;
+		this.centerY = this.initY;
+		
+		this.targets = new ArrayList<>();
+		this.inNetwork = false;
 	}
 
 	public void display(){
 
 	}
 	
+	public void setCenterX(float x){
+		this.centerX = x;
+	}
+	
+	public float getCenterX(){
+		return this.centerX;
+	}
+	
+	public void setCenterY(float y){
+		this.centerY = y;
+	}
+	
+	public float getCenterY(){
+		return this.centerY;
+	}
+	
+	public void setInNetwork(boolean b){
+		this.inNetwork = b;
+	}
+	
+	public boolean getInNetwork(){
+		return this.inNetwork;
+	}
+	
 	public String getName(){
 		return this.name;
+	}
+	
+	public float getInitX(){
+		return this.initX;
+	}
+	
+	public float getInitY(){
+		return this.initY;
 	}
 	
 }
