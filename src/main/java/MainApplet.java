@@ -49,12 +49,25 @@ public class MainApplet extends PApplet{
 
 	public void draw() {
 		this.getCharacterList();
-		if(this.record == 0){
+		this.background(177);
 		for(int i=0; i< this.nowcharacters.size(); i++){
-			System.out.println(this.nowcharacters.get(i).getName());
+			this.nowcharacters.get(i).display();
 		}
-		this.record = 1;
+		for(int i=0; i < this.nowcharacters.size(); i++){
+			if(this.nowcharacters.get(i).getDistance(mouseX, mouseY) < 625){
+				this.fill(115);
+				this.rect(mouseX, mouseY - 30, 150, 30);
+				this.fill(0);
+				this.textSize(20);
+				this.text(this.nowcharacters.get(i).getName(), mouseX + 10, mouseY - 10);
+			}
 		}
+		/*if(mouseX < 110 && mouseX > 0 && mouseY > 0 && mouseY < 120){
+			this.fill(115);
+			this.rect(mouseX, mouseY, 50, 30);
+			//this.fill(0);
+			this.text(this.nowcharacters.get(0).getName(), mouseX + 5, mouseY + 5);
+		}*/
 	}
 	
 	public void keyPressed(){
@@ -82,23 +95,6 @@ public class MainApplet extends PApplet{
 			this.nowcharacters = this.characters7;
 	}
 	
-	/*private void setCharacterList(){
-		characters1 = new ArrayList<Character>();
-		characters2 = new ArrayList<Character>();
-		characters3 = new ArrayList<Character>();
-		characters4 = new ArrayList<Character>();
-		characters5 = new ArrayList<Character>();
-		characters6 = new ArrayList<Character>();
-		characters7 = new ArrayList<Character>();
-		this.a1.add(characters1);
-		this.a1.add(characters2);
-		this.a1.add(characters3);
-		this.a1.add(characters4);
-		this.a1.add(characters5);
-		this.a1.add(characters6);
-		this.a1.add(characters7);
-	}*/
-	
 	private void setInputFilename(){
 		str[0] = "starwars-episode-1-interactions.json";
 		str[1] = "starwars-episode-2-interactions.json";
@@ -111,13 +107,15 @@ public class MainApplet extends PApplet{
 	
 	private void loadData(){
 		for(int i=0 ; i < 7; i++){
+			float x = 60;
+			float y = 60;
 			data = loadJSONObject(path + str[i]);
 			
 			nodes = data.getJSONArray("nodes");
 			links = data.getJSONArray("links");
 			
 			for(int j=0; j< nodes.size(); j++){
-				Character c = new Character(this, nodes.getJSONObject(i).getString("name"));
+				Character c = new Character(this, nodes.getJSONObject(j).getString("name"), x, y);
 				if(i==0)
 					this.characters1.add(c);
 				else if(i==1)
@@ -132,6 +130,12 @@ public class MainApplet extends PApplet{
 					this.characters6.add(c);
 				else if(i == 6)
 					this.characters7.add(c);
+				if(y > 810){
+					x = x + 65;
+					y = 60;
+				}else{
+					y = y + 90;
+				}
 			}
 		}
 	}
