@@ -44,12 +44,9 @@ public class Character {
 	}
 
 	public void display(){
-		this.parent.ellipse(this.centerX, this.centerY, 50, 50);
 		this.parent.fill(0);
+		this.parent.ellipse(this.centerX, this.centerY, 50, 50);
 		
-		this.parent.textSize(5);
-		this.parent.text(name, centerX+10, centerY+10);
-		this.parent.fill(255);
 	}
 	
 	public void setCenterX(float x){
