@@ -15,6 +15,8 @@ public class MainApplet extends PApplet{
 	JSONObject data;
 	JSONArray nodes, links;
 	
+	private Network net;
+	
 	private String path = "main/resources/";
 	private String[] str;
 	private String file1 = "starwars-episode-1-interactions.json";
@@ -33,6 +35,7 @@ public class MainApplet extends PApplet{
 	
 	public void setup() {
 		str = new String[7];
+		net = new Network(this);
 		characters1 = new ArrayList<Character>();
 		characters2 = new ArrayList<Character>();
 		characters3 = new ArrayList<Character>();
@@ -50,6 +53,7 @@ public class MainApplet extends PApplet{
 	public void draw() {
 		this.getCharacterList();
 		this.background(177);
+		net.display();
 		for(int i=0; i< this.nowcharacters.size(); i++){
 			this.nowcharacters.get(i).display();
 		}

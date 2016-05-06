@@ -12,6 +12,10 @@ public class Network {
 	
 	private PApplet parent;
 	
+	private static float centerX = 700;
+	private static float centerY = 300;
+	private static float r = 250;
+	
 	private ArrayList<Character> net;
 
 	public Network(PApplet parent){
@@ -21,7 +25,8 @@ public class Network {
 	}
 
 	public void display(){
-		
+		this.parent.fill(0);
+		this.parent.ellipse(centerX, centerY,r*2 , r*2);
 	}
 	
 	public void add(Character ch){
