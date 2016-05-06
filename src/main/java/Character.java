@@ -90,4 +90,12 @@ public class Character {
 		return distance;
 	}
 	
+	public void add(Character ch){
+		this.targets.add(ch);
+	}
+	
+	public ArrayList<Character> getTargets(){
+		return this.targets;
+	}
+	
 }

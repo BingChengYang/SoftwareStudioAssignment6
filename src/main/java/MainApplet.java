@@ -53,7 +53,6 @@ public class MainApplet extends PApplet{
 	public void draw() {
 		this.getCharacterList();
 		this.background(177);
-		net.display();
 		for(int i=0; i< this.nowcharacters.size(); i++){
 			this.nowcharacters.get(i).display();
 		}
@@ -80,6 +79,17 @@ public class MainApplet extends PApplet{
 		else
 			nowEpisode ++;
 		this.record = 0; 
+	}
+	
+	public void mousePressed(){
+		for(int i=0; i < this.nowcharacters.size(); i++){
+			if(this.nowcharacters.get(i).getDistance(mouseX, mouseY) < 625 && this.nowcharacters.get(i).getInNetwork()==false){
+				this.net.add(this.nowcharacters.get(i));
+			}
+			if(this.nowcharacters.get(i).getDistance(mouseX, mouseY) < 625 && this.nowcharacters.get(i).getInNetwork()==true){
+				this.net.remove(this.nowcharacters.get(i));
+			}
+		}
 	}
 	
 	private void getCharacterList(){

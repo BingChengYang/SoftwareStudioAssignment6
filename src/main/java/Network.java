@@ -27,6 +27,15 @@ public class Network {
 	public void display(){
 		this.parent.fill(0);
 		this.parent.ellipse(centerX, centerY,r*2 , r*2);
+		
+		for(Character ch : net){
+			for(Character t : ch.getTargets()){
+				this.parent.fill(255);
+				if(t.getInNetwork()==true){
+					this.parent.line(ch.getCenterX(), ch.getCenterY(), t.getCenterX(), t.getCenterY());
+				}
+			}
+		}
 	}
 	
 	public void add(Character ch){
