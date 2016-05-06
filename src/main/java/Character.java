@@ -88,4 +88,9 @@ public class Character {
 		return this.initY;
 	}
 	
+	public float getDistance(float x,float y){
+		float distance = (x-centerX)*(x-centerX) + (y-centerY)*(y-centerY);
+		return distance;
+	}
+	
 }
