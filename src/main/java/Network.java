@@ -30,15 +30,24 @@ public class Network {
 	}
 	
 	public void remove(Character ch){
-		
+		int index = 0;
+		for(Character c :net){
+			if(c == ch){
+				net.remove(index);
+				break;
+			}
+			index++;
+		}
 	}
 	
 	public void addAll(ArrayList<Character> list){
-		
+		this.net = list;
 	}
 	
 	public void removeAll(){
-		
+		while(this.net.isEmpty()!=true){
+			this.net.remove(0);
+		}
 	}
 	
 }
