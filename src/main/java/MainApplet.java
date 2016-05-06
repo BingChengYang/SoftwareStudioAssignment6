@@ -151,6 +151,22 @@ public class MainApplet extends PApplet{
 					y = y + 90;
 				}
 			}
+			for(int j=0; j < links.size(); j++){
+				if(i==0)
+					this.characters1.get(links.getJSONObject(j).getInt("source")).add(this.characters1.get(links.getJSONObject(j).getInt("target")));
+				else if(i==1)
+					this.characters2.get(links.getJSONObject(j).getInt("source")).add(this.characters2.get(links.getJSONObject(j).getInt("target")));
+				else if(i == 2)
+					this.characters3.get(links.getJSONObject(j).getInt("source")).add(this.characters3.get(links.getJSONObject(j).getInt("target")));
+				else if(i == 3)
+					this.characters4.get(links.getJSONObject(j).getInt("source")).add(this.characters4.get(links.getJSONObject(j).getInt("target")));
+				else if(i == 4)
+					this.characters5.get(links.getJSONObject(j).getInt("source")).add(this.characters5.get(links.getJSONObject(j).getInt("target")));
+				else if(i == 5)
+					this.characters6.get(links.getJSONObject(j).getInt("source")).add(this.characters6.get(links.getJSONObject(j).getInt("target")));
+				else if(i == 6)
+					this.characters7.get(links.getJSONObject(j).getInt("source")).add(this.characters7.get(links.getJSONObject(j).getInt("target")));
+			}
 		}
 	}
 
