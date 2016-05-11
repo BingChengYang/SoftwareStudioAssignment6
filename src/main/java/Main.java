@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class Main extends JFrame{
 	
-	private final static int windowWidth = 1200, windowHeight = 670;
+	private final static int windowWidth = 1300, windowHeight = 1000;
 	
 	public static void main(String [] args){
 		
