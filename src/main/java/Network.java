@@ -35,11 +35,14 @@ public class Network {
 		for(Character ch : net){
 			if(ch.getInNetwork()==true)
 				System.out.println(ch.getName());
+			int i=0;
 			for(Character t : ch.getTargets()){
 				this.parent.fill(255);
 				if(t.getInNetwork()==true){
+					this.parent.strokeWeight(ch.getValue(i));
 					this.parent.line(ch.getCenterX(), ch.getCenterY(), t.getCenterX(), t.getCenterY());
 				}
+				i++;
 			}
 		}
 	}

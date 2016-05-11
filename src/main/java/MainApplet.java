@@ -159,7 +159,7 @@ public class MainApplet extends PApplet{
 			links = data.getJSONArray("links");
 			
 			for(int j=0; j< nodes.size(); j++){
-				Character c = new Character(this, nodes.getJSONObject(j).getString("name"),nodes.getJSONObject(j).getString("colour"), x, y);
+				Character c = new Character(this, nodes.getJSONObject(j).getString("name"),nodes.getJSONObject(j).getString("colour"),x, y);
 				if(i==0)
 					this.characters1.add(c);
 				else if(i==1)
@@ -182,21 +182,30 @@ public class MainApplet extends PApplet{
 				}
 			}
 			for(int j=0; j < links.size(); j++){
-				if(i==0)
+				if(i==0){
+					this.characters1.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters1.get(links.getJSONObject(j).getInt("source")).add(this.characters1.get(links.getJSONObject(j).getInt("target")));
-				else if(i==1)
+				}else if(i==1){
+					this.characters2.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters2.get(links.getJSONObject(j).getInt("source")).add(this.characters2.get(links.getJSONObject(j).getInt("target")));
-				else if(i == 2)
+				}else if(i == 2){
+					this.characters3.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters3.get(links.getJSONObject(j).getInt("source")).add(this.characters3.get(links.getJSONObject(j).getInt("target")));
-				else if(i == 3)
+				}else if(i == 3){
+					this.characters4.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters4.get(links.getJSONObject(j).getInt("source")).add(this.characters4.get(links.getJSONObject(j).getInt("target")));
-				else if(i == 4)
+				}else if(i == 4){
+					this.characters5.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters5.get(links.getJSONObject(j).getInt("source")).add(this.characters5.get(links.getJSONObject(j).getInt("target")));
-				else if(i == 5)
+				}else if(i == 5){
+					this.characters6.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters6.get(links.getJSONObject(j).getInt("source")).add(this.characters6.get(links.getJSONObject(j).getInt("target")));
-				else if(i == 6)
+				}else if(i == 6){
+					this.characters7.get(links.getJSONObject(j).getInt("source")).setValue(links.getJSONObject(j).getInt("value"));
 					this.characters7.get(links.getJSONObject(j).getInt("source")).add(this.characters7.get(links.getJSONObject(j).getInt("target")));
+				}
 			}
+				
 		}
 	}
 

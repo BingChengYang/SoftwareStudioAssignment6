@@ -17,7 +17,6 @@ public class Character {
 	
 	private String name;
 	private String color;
-	private int value;
 	private Color c;
 	
 	private float initX;
@@ -29,13 +28,15 @@ public class Character {
 	private boolean inNetwork;
 
 	private ArrayList<Character> targets;
+	private int[] value = new int [100];
+	
+	private int index = 0;
 	
 	public Character(MainApplet parent , String name ,String color,  float x,float y ){
 
 		this.parent = parent;
 		this.name = name;
 		this.color = color;
-		this.value = value;
 		
 		this.initX = x;
 		this.initY = y;
@@ -115,5 +116,13 @@ public class Character {
 	public int turncolor(){
 		int hi = (int) Long.parseLong(this.color.replace("#", ""), 16);
 		return hi;
+	}
+	
+	public void setValue(int n){
+		this.value[index]=n;
+		index++;
+	}
+	public int getValue(int n){
+		return this.value[n];
 	}
 }
