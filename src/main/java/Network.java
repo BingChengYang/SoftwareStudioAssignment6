@@ -13,7 +13,7 @@ public class Network {
 	private PApplet parent;
 	
 	private static float centerX = 700;
-	private static float centerY = 300;
+	private static float centerY = 500;
 	private static float r = 250;
 	private int radius = 360;
 	private int nowInNet;
