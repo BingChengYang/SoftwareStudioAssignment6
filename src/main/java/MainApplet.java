@@ -59,6 +59,10 @@ public class MainApplet extends PApplet{
 	public void draw() {
 		this.getCharacterList();
 		this.background(255);
+		int episodenum = this.nowEpisode + 1;
+		fill(76);
+		textSize(26);
+		text("star war " + episodenum,500,60);
 		this.net.display();
 		for(int i=0; i< this.nowcharacters.size(); i++){
 			this.nowcharacters.get(i).display();
@@ -101,11 +105,21 @@ public class MainApplet extends PApplet{
 	
 	public void keyPressed(){
 		this.buttonB();
-		if(nowEpisode == 6)
-			nowEpisode = 0;
-		else
-			nowEpisode ++;
-		this.record = 0; 
+		if(keyCode == 49){
+			this.nowEpisode = 0;
+		}else if(keyCode == 50){
+			this.nowEpisode = 1;
+		}else if(keyCode == 51){
+			this.nowEpisode = 2;
+		}else if(keyCode == 52){
+			this.nowEpisode = 3;
+		}else if(keyCode == 53){
+			this.nowEpisode = 4;
+		}else if(keyCode == 54){
+			this.nowEpisode = 5;
+		}else if(keyCode == 55){
+			this.nowEpisode = 6;
+		}
 	}
 	
 	public void mouseClicked(){
