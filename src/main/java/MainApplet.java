@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
+import controlP5.*;
 
 /**
 * This class is for sketching outcome using Processing
@@ -31,10 +32,16 @@ public class MainApplet extends PApplet{
 	public int nowEpisode = 0;
 	public int record = 0;
 	
+	private ControlP5 cp5;
+	
 	private final static int width = 1200, height = 650;
 	
 	public void setup() {
 		str = new String[7];
+		size(width, height);
+		cp5 = new ControlP5(this);
+		cp5.addButton("buttonA").setLabel("Add all").setPosition(950,40).setSize(200,30);
+		cp5.addButton("buttonB").setLabel("Clear all").setPosition(950,80).setSize(200,30);
 		net = new Network(this);
 		characters1 = new ArrayList<Character>();
 		characters2 = new ArrayList<Character>();
@@ -44,7 +51,6 @@ public class MainApplet extends PApplet{
 		characters6 = new ArrayList<Character>();
 		characters7 = new ArrayList<Character>();
 		setInputFilename();
-		size(width, height);
 		smooth();
 		loadData();
 		
@@ -52,7 +58,8 @@ public class MainApplet extends PApplet{
 
 	public void draw() {
 		this.getCharacterList();
-		this.background(177);
+		this.background(255);
+		this.net.display();
 		for(int i=0; i< this.nowcharacters.size(); i++){
 			this.nowcharacters.get(i).display();
 		}
@@ -65,6 +72,7 @@ public class MainApplet extends PApplet{
 				this.text(this.nowcharacters.get(i).getName(), mouseX + 10, mouseY - 10);
 			}
 		}
+		
 		/*if(mouseX < 110 && mouseX > 0 && mouseY > 0 && mouseY < 120){
 			this.fill(115);
 			this.rect(mouseX, mouseY, 50, 30);
@@ -73,7 +81,26 @@ public class MainApplet extends PApplet{
 		}*/
 	}
 	
+	public void buttonA(){
+		for(int i=0 ; i< this.nowcharacters.size(); i++){
+			if(this.nowcharacters.get(i).getInNetwork() == false){
+				this.net.add(this.nowcharacters.get(i));
+			}
+		}
+		this.net.update();
+	}
+	
+	public void buttonB(){
+		for(int i=0; i < this.nowcharacters.size(); i++){
+			if(this.nowcharacters.get(i).getInNetwork() == true){
+				this.net.remove(this.nowcharacters.get(i));
+			}
+		}
+		this.net.update();
+	}
+	
 	public void keyPressed(){
+		this.buttonB();
 		if(nowEpisode == 6)
 			nowEpisode = 0;
 		else
@@ -81,13 +108,16 @@ public class MainApplet extends PApplet{
 		this.record = 0; 
 	}
 	
-	public void mousePressed(){
+	public void mouseClicked(){
 		for(int i=0; i < this.nowcharacters.size(); i++){
 			if(this.nowcharacters.get(i).getDistance(mouseX, mouseY) < 625 && this.nowcharacters.get(i).getInNetwork()==false){
 				this.net.add(this.nowcharacters.get(i));
+				this.net.update();
+				System.out.println("aaa");
 			}
 			if(this.nowcharacters.get(i).getDistance(mouseX, mouseY) < 625 && this.nowcharacters.get(i).getInNetwork()==true){
 				this.net.remove(this.nowcharacters.get(i));
+				System.out.println("bbb");
 			}
 		}
 	}
@@ -129,7 +159,7 @@ public class MainApplet extends PApplet{
 			links = data.getJSONArray("links");
 			
 			for(int j=0; j< nodes.size(); j++){
-				Character c = new Character(this, nodes.getJSONObject(j).getString("name"), x, y);
+				Character c = new Character(this, nodes.getJSONObject(j).getString("name"),nodes.getJSONObject(j).getString("colour"), x, y);
 				if(i==0)
 					this.characters1.add(c);
 				else if(i==1)
