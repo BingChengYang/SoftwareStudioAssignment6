@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
+import java.lang.*;
+
 /**
 * This class is used to store states of the characters in the program.
 * You will need to declare other variables depending on your implementation.
@@ -14,6 +16,7 @@ public class Character {
 	private MainApplet parent;
 	
 	private String name;
+	private String color;
 	private int value;
 	private Color c;
 	
@@ -27,10 +30,11 @@ public class Character {
 
 	private ArrayList<Character> targets;
 	
-	public Character(MainApplet parent , String name , float x,float y ){
+	public Character(MainApplet parent , String name ,String color,  float x,float y ){
 
 		this.parent = parent;
 		this.name = name;
+		this.color = color;
 		this.value = value;
 		
 		this.initX = x;
@@ -44,9 +48,15 @@ public class Character {
 	}
 
 	public void display(){
-		this.parent.fill(0);
+		this.parent.fill(this.turncolor());
 		this.parent.ellipse(this.centerX, this.centerY, 50, 50);
+		//System.out.println(this.color.replace("#", ""));
 		
+	}
+	
+	public void initial(){
+		this.centerX = this.initX;
+		this.centerY = this.initY;
 	}
 	
 	public void setCenterX(float x){
@@ -77,6 +87,10 @@ public class Character {
 		return this.name;
 	}
 	
+	public String getColor(){
+		return this.color;
+	}
+	
 	public float getInitX(){
 		return this.initX;
 	}
@@ -98,4 +112,8 @@ public class Character {
 		return this.targets;
 	}
 	
+	public int turncolor(){
+		int hi = (int) Long.parseLong(this.color.replace("#", ""), 16);
+		return hi;
+	}
 }
